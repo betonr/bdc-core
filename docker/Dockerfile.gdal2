@@ -1,0 +1,17 @@
+# GDAL2 - python3
+# registry.dpi.inpe.br/brazildatacube/geo:0.2
+
+FROM brazildatacube/base:0.1
+
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        software-properties-common && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN add-apt-repository -y ppa:ubuntugis/ppa && \
+    apt-get update && \
+    apt-get install -y \
+        libgdal-dev gdal-bin && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install GDAL==2.4
